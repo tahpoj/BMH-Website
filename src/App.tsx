@@ -133,7 +133,7 @@ function App() {
       {/* Hero Section */}
       <section id="home" className="relative bg-zinc-900 overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
+          className="absolute inset-0 bg-cover bg-center opacity-40"
           style={{
             backgroundImage: "url('/images/hero-broadcast.jpg'), url('https://placehold.co/1920x800/1e293b/94a3b8/png?text=Broadcast+and+ProAV')",
           }}
@@ -375,19 +375,30 @@ function App() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {[
-              { icon: Camera, title: 'Pro Camcorders', desc: 'Professional broadcast cameras for every production need' },
-              { icon: Film, title: 'Studio & EFP Cameras', desc: 'Advanced HD cameras with cutting-edge features' },
-              { icon: MonitorPlay, title: 'Monitors & Displays', desc: '4K HDR reference monitors for color-critical work' },
-              { icon: Headphones, title: 'Pro Audio', desc: 'Professional audio equipment for broadcast quality sound' },
-              { icon: Lightbulb, title: 'Lighting', desc: 'Studio and field lighting solutions for any environment' },
-              { icon: Camera, title: 'Photography', desc: 'Professional photography equipment and accessories' },
-              { icon: Settings, title: 'Accessories', desc: 'Essential accessories for professional setups' },
-              { icon: MonitorPlay, title: 'Recording & Monitoring', desc: 'Broadcast quality recording for cameras and DSLRs' },
+              { icon: Camera, title: 'Pro Camcorders', desc: 'Professional broadcast cameras for every production need', img: '/images/product-camcorder.jpg' },
+              { icon: Film, title: 'Studio & EFP Cameras', desc: 'Advanced HD cameras with cutting-edge features', img: '/images/product-studio-camera.jpg' },
+              { icon: MonitorPlay, title: 'Monitors & Displays', desc: '4K HDR reference monitors for color-critical work', img: '/images/product-monitor.jpg' },
+              { icon: Headphones, title: 'Pro Audio', desc: 'Professional audio equipment for broadcast quality sound', img: '/images/product-audio.jpg' },
+              { icon: Lightbulb, title: 'Lighting', desc: 'Studio and field lighting solutions for any environment', img: '/images/product-lighting.jpg' },
+              { icon: Camera, title: 'Photography', desc: 'Professional photography equipment and accessories', img: '/images/product-photography.jpg' },
+              { icon: Settings, title: 'Accessories', desc: 'Essential accessories for professional setups', img: '/images/product-accessories.jpg' },
+              { icon: MonitorPlay, title: 'Recording & Monitoring', desc: 'Broadcast quality recording for cameras and DSLRs', img: '/images/product-recording.jpg' },
             ].map((product, i) => (
               <Card key={i} className="group cursor-pointer border-0 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                <div className="h-40 overflow-hidden">
+                  <img
+                    src={product.img}
+                    alt={product.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement
+                      target.src = `https://placehold.co/400x200/e2e8f0/475569/png?text=${encodeURIComponent(product.title)}`
+                    }}
+                  />
+                </div>
                 <CardContent className="p-6">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center mb-4 group-hover:from-blue-600 group-hover:to-blue-700 transition-all duration-300">
-                    <product.icon className="w-7 h-7 text-blue-600 group-hover:text-white transition-colors duration-300" />
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center mb-3 group-hover:from-blue-600 group-hover:to-blue-700 transition-all duration-300">
+                    <product.icon className="w-5 h-5 text-blue-600 group-hover:text-white transition-colors duration-300" />
                   </div>
                   <h3 className="font-semibold text-zinc-900 mb-2">{product.title}</h3>
                   <p className="text-sm text-zinc-500 leading-relaxed">{product.desc}</p>
